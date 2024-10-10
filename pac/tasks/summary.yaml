@@ -44,7 +44,7 @@ spec:
       script: |
         #!/usr/bin/env bash
         echo
-        echo "Build Summary:"
+        echo "!!! Build Summary !!!:"
         echo
         echo "Build repository: $GIT_URL"
         if [ "$BUILD_TASK_STATUS" == "Succeeded" ]; then
