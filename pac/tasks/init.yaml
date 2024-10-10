@@ -35,6 +35,8 @@ spec:
           value: $(params.skip-checks)
       script: |
         #!/bin/bash
+        echo "Coucou !"
+        
         echo "Build Initialize: $IMAGE_URL"
         echo
 
