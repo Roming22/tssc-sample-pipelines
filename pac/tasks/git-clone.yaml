@@ -164,7 +164,7 @@ spec:
     script: |
       #!/usr/bin/env sh
       set -eu
-
+      echo "Coucou !"
       if [ "${PARAM_VERBOSE}" = "true" ] ; then
         set -x
       fi
