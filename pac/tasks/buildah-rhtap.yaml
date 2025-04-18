@@ -40,6 +40,11 @@ spec:
     description: Storage driver to configure for buildah
     type: string
     default: vfs
+  results:
+  - description: Digest of the image just built
+    name: IMAGE_DIGEST
+  - description: Image repository and tag where the built image was pushed
+    name: IMAGE_URL
   stepTemplate:
     env:
     - name: STORAGE_DRIVER
@@ -100,6 +105,10 @@ spec:
         --retry=5 \
         --digestfile /tmp/files/image-digest "$IMAGE" \
         "docker://${IMAGE%:*}:$(context.pipelineRun.name)"
+
+      # Set task results
+      cat /tmp/files/image-digest | tee $(results.IMAGE_DIGEST.path)
+      echo -n "$IMAGE" | tee $(results.IMAGE_URL.path)
     securityContext:
       capabilities:
         add:
