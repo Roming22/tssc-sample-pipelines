@@ -77,7 +77,7 @@ spec:
       mountPath: /run/secrets/trustification
   steps:
   - name: gather-sboms
-    image: quay.io/konflux-ci/appstudio-utils:48c311af02858e2422d6229600e9959e496ddef1@sha256:91ddd999271f65d8ec8487b10f3dd378f81aa894e11b9af4d10639fd52bba7e8
+    image: quay.io/konflux-ci/appstudio-utils:latest
     script: |
       #!/usr/bin/env bash
       set -o errexit -o nounset -o pipefail
@@ -137,7 +137,7 @@ spec:
 
   # Needs syft, which is in a different image => has to be a separate step
   - name: convert-sboms-if-needed
-    image: registry.redhat.io/rh-syft-tech-preview/syft-rhel9:1.19.0@sha256:070ecb89de5104bb64fbf399a991a975e7d4d7e0cea0f7beb1e591b5591991c8
+    image: registry.redhat.io/rh-syft-tech-preview/syft-rhel9:latest
     script: |
       #!/usr/bin/env bash
       set -o errexit -o nounset -o pipefail
@@ -162,7 +162,7 @@ spec:
       done
 
   - name: upload-sboms
-    image: quay.io/konflux-ci/appstudio-utils:48c311af02858e2422d6229600e9959e496ddef1@sha256:91ddd999271f65d8ec8487b10f3dd378f81aa894e11b9af4d10639fd52bba7e8
+    image: quay.io/konflux-ci/appstudio-utils:latest
     script: |
       #!/usr/bin/env bash
       set -o errexit -o nounset -o pipefail

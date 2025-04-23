@@ -131,7 +131,7 @@ spec:
   - env:
     - name: TUF_MIRROR
       value: $(params.TUF_MIRROR)
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: initialize-tuf
     script: |-
       set -euo pipefail
@@ -157,7 +157,7 @@ spec:
       value: $(params.SINGLE_COMPONENT_CUSTOM_RESOURCE_NS)
     - name: SNAPSHOT_PATH
       value: $(params.HOMEDIR)/snapshot.json
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: reduce
     onError: continue
   - args:
@@ -201,7 +201,7 @@ spec:
       value: /tekton-custom-certs:/etc/ssl/certs:/etc/pki/tls/certs:/system/etc/security/cacerts:$(params.SSL_CERT_DIR)
     - name: EC_CACHE
       value: "false"
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: validate
     onError: continue
     volumeMounts:
@@ -213,7 +213,7 @@ spec:
     - $(params.HOMEDIR)/report-json.json
     command:
     - cat
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: report-json
     onError: continue
   - args:
@@ -221,7 +221,7 @@ spec:
     - $(results.TEST_OUTPUT.path)
     command:
     - jq
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: summary
     onError: continue
   - args:
@@ -229,19 +229,19 @@ spec:
       ----- DEBUG OUTPUT -----
     command:
     - printf
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: info
   - args:
     - version
     command:
     - ec
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: version
   - args:
     - $(params.HOMEDIR)/debug.log
     command:
     - cat
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: debug-log
   - args:
     - --argjson
@@ -253,7 +253,7 @@ spec:
     - $(results.TEST_OUTPUT.path)
     command:
     - jq
-    image: registry.redhat.io/rhtas/ec-rhel9:0.6
+    image: registry.redhat.io/rhtas/ec-rhel9:latest
     name: assert
   - image: registry.redhat.io/openshift4/ose-cli:4.13@sha256:73df37794ffff7de1101016c23dc623e4990810390ebdabcbbfa065214352c7c
     name: annotate-task
